@@ -22,9 +22,8 @@ export default function TextInput(props) {
   };
 
   const handleCopy = () => {
-    let text = document.getElementById("exampleFormControlTextarea1");
-    text.select();
-    navigator.clipboard.writeText(text.value);
+    
+    navigator.clipboard.writeText(text);
     props.showAlert(" Text Copied", "success");
   };
 
@@ -94,7 +93,7 @@ export default function TextInput(props) {
         
           
             <p>
-              {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters
+              {text.split(/\s+/).filter((element)=>{return element.length!==0}).length} words and {text.length} characters
             </p>
             <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p>
        
