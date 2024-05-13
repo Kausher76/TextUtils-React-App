@@ -1,13 +1,15 @@
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import About from "./components/About";
 import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 import TextInput from "./components/TextInput";
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light");
   const [alert, setAlert] = useState(null);
+
   const showAlert = (message, type) => {
     setAlert({
       message: message,
@@ -17,6 +19,7 @@ function App() {
       setAlert(null);
     }, 1500);
   };
+
   const toggleMode = () => {
     if (mode === "light") {
       setMode("dark");
@@ -34,11 +37,11 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar mode={mode} toggleMode={toggleMode} />
+        <Navbar mode={mode} toggleMode={toggleMode} title="TextUtils" about="About TextUtils" />
         <Alert alert={alert} />
         <Routes>
-          <Route exact path="/" element={<TextInput showAlert={showAlert} mode={mode} />} ></Route>
-          <Route exact path="/about"  element={<About mode={mode} />}></Route>
+          <Route exact path="/" element={<TextInput showAlert={showAlert} mode={mode} />} />
+          <Route exact path="/about" element={<About mode={mode} />} />
         </Routes>
       </Router>
     </>

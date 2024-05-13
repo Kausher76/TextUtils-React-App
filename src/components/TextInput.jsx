@@ -61,26 +61,26 @@ export default function TextInput(props) {
             rows="8"
           ></textarea>
         </div>
-        <button
-          className="btn btn-primary mx-2"
+        <button disabled = {text.length === 0}
+          className="btn btn-primary mx-2 my-2"
           onClick={onUpperCaseClickHandler}
         >
           Uppercase
         </button>
-        <button
-          className="btn btn-primary mx-2"
+        <button disabled = {text.length === 0}
+          className="btn btn-primary mx-2 my-2"
           onClick={onLowerCaseClickHandler}
         >
           Lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={onClearClickHandler}>
+        <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={onClearClickHandler}>
           Clear
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+        <button disabled = {text.length === 0} className="btn btn-primary mx-2 my-2" onClick={handleCopy}>
           Copy
         </button>
-        <button
-          className="btn btn-primary mx-2"
+        <button disabled = {text.length === 0}
+          className="btn btn-primary mx-2 my-2"
           onClick={handlerRemoveExtraSpace}
         >
           Remove Extra Space
@@ -91,15 +91,15 @@ export default function TextInput(props) {
         style={{ color: props.mode === "dark" ? "white" : "black" }}
       >
         <h2>Your Text Summary</h2>
-        {text.trim().length > 0 && (
-          <>
+        
+          
             <p>
-              {text.split(" ").length} words and {text.length} characters
+              {text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters
             </p>
-            <p>{0.008 * text.split(" ").length} minutes read</p>
-          </>
-        )}
-        <h2>Preview</h2>
+            <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} minutes read</p>
+       
+       
+        <h2>{text.length > 0 ? "Your Text Preview" : "Nothing to Preview"}</h2>
         <p>{text.length > 0 ? text : "Enter Text To Analyse"}</p>
       </div>
     </>

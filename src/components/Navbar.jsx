@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
-function Navbar(props) {
+function Navbar({ title = "TextUtils", about = "About TextUtils", mode, toggleMode }) {
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}
+        className={`navbar navbar-expand-lg navbar-${mode} bg-${mode}`}
       >
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            {props.title}
+            {title}
           </Link>
           <button
             className="navbar-toggler"
@@ -32,13 +32,13 @@ function Navbar(props) {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/about">
-                  {props.about}
+                  {about}
                 </Link>
               </li>
             </ul>
             <div className="form-check form-switch">
               <input
-                onClick={props.toggleMode}
+                onClick={toggleMode}
                 className="form-check-input"
                 type="checkbox"
                 role="switch"
@@ -46,11 +46,11 @@ function Navbar(props) {
               />
               <label
                 className={`form-check-label ${
-                  props.mode === "dark" ? "text-light" : "text-dark"
+                  mode === "dark" ? "text-light" : "text-dark"
                 }`}
                 htmlFor="flexSwitchCheckDefault"
               >
-                {props.mode === "dark"
+                {mode === "dark"
                   ? "Enable Light Mode"
                   : "Enable Dark Mode"}
               </label>
@@ -61,12 +61,12 @@ function Navbar(props) {
     </>
   );
 }
-export default Navbar;
+
 Navbar.propTypes = {
   title: PropTypes.string.isRequired,
   about: PropTypes.string.isRequired,
+  mode: PropTypes.string.isRequired,
+  toggleMode: PropTypes.func.isRequired,
 };
-Navbar.defaultProps = {
-  title: "TextUtils",
-  about: "About TextUtils",
-};
+
+export default Navbar;
